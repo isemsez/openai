@@ -1,8 +1,6 @@
 import time
 from datetime import datetime
-
 import openai
-
 from functions import *
 import json
 
@@ -15,9 +13,9 @@ saved_file = r'c:\Users\stat\Documents\crypto_descriptions.txt'
 with open(saved_file, 'r', encoding='utf8') as f:
     already_downloaded1 = f.read().strip('\n').split('\n')
     already_downloaded2 = list(filter(lambda line: len(line) > 0, already_downloaded1))
-    already_downloaded3 = list(map(lambda line: get_name(line), already_downloaded2))
+    already_downloaded = list(map(lambda line: get_name(line), already_downloaded2))
 
-to_download = [x for x in cryptos if x not in already_downloaded3]
+to_download = [x for x in cryptos if x not in already_downloaded]
 print('to download length: ' + str(len(to_download)))
 
 ix = 0
