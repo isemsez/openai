@@ -4,17 +4,13 @@ import os
 from functions import get_name
 
 doc_path = r'c:\Users\stat\Documents'
-from_file_en = os.path.join(doc_path, r'marketcap_gpt_Russian.txt')
-from_file = os.path.join(doc_path, r'marketcap_gpt_Russian.txt')
-save_file = os.path.join(doc_path, r'marketcap_gpt_Russian_new.txt')
+from_file = os.path.join(doc_path, r'orig_gpt_to_Russian.txt')
+save_file = os.path.join(doc_path, r'orig_gpt_to_Russian_new.txt')
 with open(from_file, 'r', encoding='utf8') as f:
     all_lines = f.read().strip().split('\n\n')
 print('all lines: ' + str(len(all_lines)))
 
-netto_list = list(set(map(lambda line: get_name(line), all_lines)))
-
-
-
+# netto_list = list(set(map(lambda line: get_name(line), all_lines)))
 
 already_added = []
 out_list = []
@@ -26,8 +22,8 @@ for line in all_lines:
     about = tmp['about']
     if crypto_name in already_added:
         continue
-    output = json.dumps( {"crypto": crypto_name, "about": about}, ensure_ascii=False )
-    out_list.append(output)
+    # output = json.dumps({"crypto": crypto_name, "about": about}, ensure_ascii=False)
+    out_list.append(line)
     already_added.append(crypto_name)
 print(len(out_list))
 with open(save_file, 'w', encoding='utf8') as f:
